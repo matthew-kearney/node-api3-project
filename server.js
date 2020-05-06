@@ -1,13 +1,19 @@
 const express = require('express');
 
-const server = express();
+ const userRouter = require('./users/userRouter');
 
-server.get('/', (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`);
-});
+ const server = express();
+ server.use(logger);
 
-//custom middleware
+ server.use('/api/user', userRouter);
 
-function logger(req, res, next) {}
+ server.get('/', (req, res) => {
+   res.send(`<h2>Let's write some middleware!</h2>`);
+ });
 
-module.exports = server;
+ //custom middleware
+
+ 
+ function logger(req, res, next) {}
+
+ module.exports = server;
